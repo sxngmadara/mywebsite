@@ -117,7 +117,7 @@
     </div>
 
     <script>
-        document.getElementById('transactionForm').onsubmit = function(event) {
+document.getElementById('transactionForm').onsubmit = function(event) {
     event.preventDefault(); // Prevent default form submission
 
     fetch(this.action, {
@@ -138,6 +138,7 @@
         alert('Error submitting the transaction.');
     });
 };
+
     </script>
 </body>
 
