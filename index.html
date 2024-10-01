@@ -103,7 +103,7 @@
 
             <!-- Amount Input -->
             <label for="amount">Amount</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter amount" required min="0.00" aria-label="Amount">
+            <input type="number" id="amount" name="amount" placeholder="Enter amount" required aria-label="Amount">
 
             <!-- Remark Input -->
             <label for="remark">Remark</label>
@@ -118,23 +118,26 @@
 
     <script>
         document.getElementById('transactionForm').onsubmit = function(event) {
-            event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Prevent default form submission
 
-            fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this)
-            }).then(response => {
-                if (response.ok) {
-                    document.getElementById('Done').style.display = 'block';
-                    document.getElementById('Done').innerText = 'Transaction successfully submitted!';
-                } else {
-                    alert('There was an error submitting your transaction.');
-                }
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error submitting the transaction.');
-            });
-        };
+    fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this)
+    }).then(response => {
+        if (response.ok) {
+            document.getElementById('Done').style.display = 'block';
+            document.getElementById('Done').innerText = 'Transaction successfully submitted!';
+
+            // Reset the form after a successful submission
+            this.reset();
+        } else {
+            alert('There was an error submitting your transaction.');
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+        alert('Error submitting the transaction.');
+    });
+};
     </script>
 </body>
 
